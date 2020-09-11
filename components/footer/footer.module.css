@@ -1,0 +1,16 @@
+.main{
+  position: fixed;
+  bottom: 0px;
+  background: #aaa;
+  padding:10px 0px;
+width:100vw;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.links{
+  font-family: sans-serif;
+  width:25%;
+  text-align: center;
+
+}
