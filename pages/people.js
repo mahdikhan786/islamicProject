@@ -7,9 +7,13 @@ import styles from '../styles/people.module.css'
 import AddPeople from '../components/editpeople/addpeople';
 import ProfileCard from '../components/profilecard/profilecard';
 
-export default function People(){
+export default function People({language}){
+  const [appLang,setAppLang] = useState('eng');
   const [users,setUsers] = useState(false);
   const [userDom,setuserDom] = useState(false);
+  useEffect(() => {
+    setAppLang(language)
+  },[language])
   const generateUserDom = (data) => {
     let userDom = [];
     data.forEach((item, i) => {
@@ -19,9 +23,9 @@ setuserDom(userDom);
   }
 
   useEffect(()=>{
-
     getData();
   },[])
+
   const getData = async () => {
     try{
       const response = await axios.get('https://islamicprojectbackend.herokuapp.com/profile/');
@@ -37,11 +41,11 @@ setuserDom(userDom);
     <title>People</title>
     </Head>
     <div className={styles.addpeoplemodal} >
-      <AddPeople getData={getData} />
+      <AddPeople language={language} getData={getData} />
       </div>
       <div className={`${styles.container}`}>
       <h2 className={`${styles.heading}`}>
-      People
+      {appLang == 'eng'? 'People' : 'لوگ'}
       </h2>
       <div  className={`${styles.peopleList}`}>
       {userDom}
