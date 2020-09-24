@@ -1,0 +1,21 @@
+.addpeoplemodal{
+padding: 15px 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.heading{
+  width:100%;
+  text-align: center;
+  color: #555;
+  font-size: 2rem;
+}
+.peopleList{
+  width:auto;
+}

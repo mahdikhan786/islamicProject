@@ -10,7 +10,7 @@ export default function App({Component, pageProps}){
   return(
     <div className='app'>
     <Header languageHandler={languageHandler} />
-    <Component language={appLang} {...pageProps} />
+    <Component  language={appLang} {...pageProps} />
     <Footer language={appLang}/>
     </div>
   )
