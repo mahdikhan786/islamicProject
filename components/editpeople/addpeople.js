@@ -238,7 +238,7 @@ useEffect(() => {
 
             <div className={`${styles.inputOption} ${appLang == 'eng'? '': styles.inputOptionUrdu}`}>
               <label htmlFor="confirmprofilepassword" className={styles.label}>
-                {appLang == 'eng' ? 'ConfirmPassword:':':پاس ورڈ کی تصدیق'}
+                {appLang == 'eng' ? 'confirmation:':':تصدیق'}
               </label>
               <input
               onChange={(e) => {

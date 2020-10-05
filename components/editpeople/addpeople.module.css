@@ -67,13 +67,14 @@
   flex-direction: row-reverse;
 }
 .label{
+  min-width:max-content;
   color:#444;
   font-size: 0.7rem;
   margin:0px 17px 0px 0px;
 }
 .input{
   margin:0px 10px;
-  width:auto;
+  width:100%;
   color:#777;
   font-size: 0.5rem;
   outline: none;

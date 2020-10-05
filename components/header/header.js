@@ -16,7 +16,7 @@ const [appLang,setAppLang] = useState('eng');
       languageHandler(e.target.value)
     }}  id='lang'>
     <option value='eng'>English</option>
-    <option value='urdu'>javascript</option>
+    <option value='urdu'>Urdu</option>
     </select>
     </div>
     </div>
