@@ -110,7 +110,7 @@ useEffect(() => {
           }}
           className={`${styles.modaltogglerbtn}  ${styles.rmovebtnstyle}`}
         >
-          {appLang == 'eng' ? '+ Add People' :'شام ل کریں +'}
+          {appLang == 'eng' ? '+ Add People' :'شامل کریں +'}
         </button>
       ) : (
         <div className={styles.modalcontainer}>
@@ -249,7 +249,7 @@ useEffect(() => {
                 id="confirmprofilepassword"
                 className={`${styles.input} ${appLang == 'eng' ? '' : styles.inputUrdu }`}
                 type="password"
-                placeholder={appLang == 'eng' ? 'ConfirmPassword':'پاس ورڈ کی تصدیق'}
+                placeholder={appLang == 'eng' ? 'Confirm password':'پاس ورڈ کی تصدیق'}
                 maxLength="15"
               />
             </div>

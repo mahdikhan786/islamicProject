@@ -15,7 +15,16 @@ padding: 15px 5px;
   text-align: center;
   color: #555;
   font-size: 2rem;
+  margin:0px 0px 20px 0px;
 }
 .peopleList{
   width:auto;
+}
+.sortingOption{
+  outline: none;
+  border-radius: 5px;
+  border:0.5px solid #ddd;
+box-shadow: 1px 1px 4px -2px #aaa, -1px -1px 4px -2px #aaa;
+  margin-right: 5px;
+  padding:5px 10px;
 }

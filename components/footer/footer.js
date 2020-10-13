@@ -9,8 +9,15 @@ export default function Footer({language}){
     <div className={styles.main}>
     <div className={`${styles.links} `}><Link href='/'><a>Home</a></Link></div>
     <div className={`${styles.links} `}><Link href='/people'><a>People</a></Link></div>
-    <div className={`${styles.links} `}><Link href='/calender'><a>Calender</a></Link></div>
-    <div className={`${styles.links} `}><Link href='/more/blog'><a>More</a></Link></div>
+    <div className={`${styles.links} `}>
+    Calneder
+    </div>
+    <div className={`${styles.links} `}>
+    More
+    </div>
     </div>
   )
 }
+
+// <Link href='/more/blog'><a>More</a></Link>
+ // <Link href='/calender'><a>Calender</a></Link>
