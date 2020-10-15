@@ -12,6 +12,7 @@ export default function People({ language }) {
   const [appLang, setAppLang] = useState("eng");
   const [users, setUsers] = useState(false);
   const [userDom, setuserDom] = useState(false);
+  const [defaultSort,setDefaultSort] = useState('All')
   useEffect(() => {
     setAppLang(language);
   }, [language]);
@@ -29,7 +30,7 @@ export default function People({ language }) {
     let userDom = [];
     let userData = data.reverse()
     userData.forEach((item, i) => {
-      userDom.push(<ProfileCard key={`${item._id}`} data={item} />);
+      userDom.push(<ProfileCard key={`${item._id}`} data={item} getData={getData} language={appLang} />);
     });
     setuserDom(userDom);
   };
@@ -37,6 +38,11 @@ export default function People({ language }) {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if(users){
+      generateUserDom(users)
+    }
+  }, [appLang])
 
   const getData = async () => {
     try {
@@ -65,13 +71,14 @@ export default function People({ language }) {
           <div>
             {language == "eng" ? <label htmlFor="userSort">Sort: </label> : ""}
             <select
+            defaultValue={defaultSort}
               className={styles.sortingOption}
               onChange={(e) => {
                 manipulateUserData(users, e.target.value);
               }}
               id="userSort"
             >
-            <option value="original">
+            <option value="All">
               {language == "eng" ? "All" : "سب"}
             </option>
               <option value="molana">
