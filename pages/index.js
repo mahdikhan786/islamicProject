@@ -20,7 +20,10 @@ export default function Home({ language }) {
 
       <main>
         <h1 className={styles.heading}>
-          {appLang == "eng" ? "Welcome to my App" : "میری ایپ میں خوش آمدید"}
+
+          GOOD LUCK WITH THE HACK SHABIH ABBAS KHAN !
+          <br/>
+          You've got 24 hours ! tick tick tick ...
         </h1>
       </main>
     </Layout>
@@ -30,3 +33,6 @@ export default function Home({ language }) {
 // <p className="description">
 // <Link href='more/blog'><a>Blog Posts</a></Link>
 // </p>
+
+
+// {appLang == "eng" ? "Welcome to my App" : "میری ایپ میں خوش آمدید"}
