@@ -21,7 +21,7 @@ export default function Home({ language }) {
       <main>
         <h1 className={styles.heading}>
 
-          GOOD LUCK WITH THE HACK SHABIH ABBAS KHAN !
+          GOOD LUCK WITH THE HACK ABBAS AND JaWAD !
           <br/>
           You've got 24 hours ! tick tick tick ...
         </h1>
