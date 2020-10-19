@@ -49,7 +49,7 @@ export default function Home({ language }) {
       <main>
         <h1 className={styles.heading}>
 
-          GOOD LUCK WITH THE HACK ABBAS AND JaWAD !
+          GOOD LUCK WITH THE HACK ABBAS AND JAWAD !
           <br/>
           You've got {timeLeft} left !
 <br />
