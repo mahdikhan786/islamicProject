@@ -17,7 +17,7 @@ export default function People({ language }) {
     setAppLang(language);
   }, [language]);
   const manipulateUserData = (data, param) => {
-    if(param === 'original'){
+    if(param === 'All'){
       let modifiedData = data.reverse()
       generateUserDom(modifiedData)
     }else{

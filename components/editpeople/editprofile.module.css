@@ -5,29 +5,27 @@
 }
 .modaltogglerbtn{
   color:#444;
-padding:5px 10px;
+  padding:5px 10px;
   font-family: sans-serif;
   box-shadow: 0px 0px 20px -9px #555;
   border:0.4px solid #ddd;
   border-radius: 5px;
 }
 .modalcontainer{
-  position: fixed;
+  position: absolute;
   top:0;
   left:0;
   background:rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+height:100vh;
   width:100%;
 }
 .modal{
-  width:fit-content;
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  position:fixed;
+width:100%;
+height:100%;
   z-index: 5;
   background: rgba(255,255,255,1);
   display:flex;
@@ -42,12 +40,12 @@ padding:5px 10px;
   border-radius: 7px;
   color:#444;
   position: absolute;
-  top:10px;
-  right:10px;
-  padding:4px 7px;
+  top:20px;
+  right:20px;
+  padding:8px 14px;
   font-weight: bolder;
   border:0.5px solid #ddd;
-  box-shadow: 1px 1px 5px -3px #555, -1px -1px 5px -3px #555;
+  box-shadow: 2px 2px 5px -3px #555, -1px -1px 5px -3px #555;
 }
 .heading{
   margin:20px 0px 15px 0px;
@@ -58,10 +56,9 @@ padding:5px 10px;
   text-align: center;
 }
 .inputOption{
-  display: flex;
   width:100%;
  display: flex;
- padding:10px 20px;
+ padding:10px 40px;
 }
 .inputOptionUrdu{
   flex-direction: row-reverse;
@@ -85,6 +82,11 @@ padding:5px 10px;
 }
 .inputUrdu{
   text-align:right;
+}
+.verificationHeading{
+  font-size: 13px;
+  margin:40px 0px 0px 0px;
+  color:#e04545;
 }
 .submit{
 display: flex;

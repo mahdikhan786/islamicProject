@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import styles from "./addpeople.module.css";
 import axios from 'axios';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function AddPeople({language,getData}) {
   const [appLang, setAppLang] = useState('eng');
   const [modalState, setModalState] = useState(false);
   const [profileData, setProfileData] = useState(false);
   const [systemResponse, setSystemResponse] = useState(null);
-  const [serverResponse,setServerResponse] = useState(false);
-
+  const [waiting,setWaiting] = useState(false);
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [phone, setPhone] = useState("");
-  const [occupation, setOccupation] = useState("");
+  const [occupation, setOccupation] = useState("molana");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
@@ -20,23 +20,23 @@ useEffect(() => {
   setAppLang(language)
 },[language])
   useEffect(() => {
-    console.log(profileData);
     if(profileData){
       const postProfileData = async () => {
+        setWaiting(true);
         try{
           const response = await axios({
             method:'post',
             url:'https://islamicprojectbackend.herokuapp.com/profile/add',
             data:profileData,
           })
-          setServerResponse(response)
+          setWaiting(false);
           setSystemResponse({response:response.data,colorCode:'#30ca09'})
           getData()
           setTimeout(() => {
+              clearModalData();
             setModalState(false);
-            clearModalData();
+
           },1000);
-          console.log(response);
         } catch (error) {
           console.log(error)
         }
@@ -66,14 +66,15 @@ useEffect(() => {
         return elem;
       }
     });
-    console.log(emptyInputBox);
     if (emptyInputBox.length > 0) {
       setSystemResponse({response:`${emptyInputBox[0].placeholder} ${appLang == 'eng' ? 'is mandatory':'لازمی ہے'}`,colorCode:'#f83a3d'});
-    } else if (phoneNoElem.value.length != 10) {
-      console.log("phonelength", phoneNoElem.value.length);
-      setSystemResponse({response:"Phone No. must be 10 digits",colorCode:'#f83a3d'});
+    } else if(phoneNoElem.value.match(/[^0-9]/g)){
+      setSystemResponse({response:`${appLang == 'eng' ? 'Phone no. must be only numerical':'فون نمبر صرف عددی ہونا چاہئے'}`,colorCode:'#f83a3d'});
+
+    }else if (phoneNoElem.value.length !== 10) {
+      setSystemResponse({response:`${appLang == 'eng' ? 'Phone no. must be 10 digits':'فون نمبر 10 نمبر کا ہونا ضروری ہے'}`,colorCode:'#f83a3d'});
     } else if (password1Elem.value !== password2Elem.value) {
-      setSystemResponse({response:"Passwords did not match !",colorCode:'#f83a3d'});
+      setSystemResponse({response:`${appLang == 'eng' ? 'Passwords did not match !':'!پاس ورڈ ایک جیسے نہیں ہیں'}`,colorCode:'#f83a3d'});
     } else {
       setSystemResponse(null);
       setProfileData({
@@ -97,8 +98,7 @@ useEffect(() => {
     setPassword('')
     setConfirmPassword('')
     setSystemResponse('')
-    document.getElementsByTagName("body")[0].style.overflow =
-      "visible";
+
   };
   return (
     <div>
@@ -106,7 +106,6 @@ useEffect(() => {
         <button
           onClick={() => {
             setModalState(true);
-            document.getElementsByTagName("body")[0].style.overflow = "hidden";
           }}
           className={`${styles.modaltogglerbtn}  ${styles.rmovebtnstyle}`}
         >
@@ -185,7 +184,7 @@ useEffect(() => {
               {appLang == 'eng' ? 'Occupation:':':عنوان'}
               </label>
               <select
-              defaultValue={''}
+              defaultValue={occupation}
                 onChange={(e) => {
                   setOccupation(e.target.value);
                 }}
@@ -196,7 +195,7 @@ useEffect(() => {
                 <option value="molana">{appLang =='eng' ? 'Molana' : 'مولا نا'}</option>
                 <option value="Naoha-khwan">{appLang == 'eng' ? 'Naoha Khwan' : 'نوحہ خوان'}</option>
                 <option value="soz-khwan">{appLang == 'eng' ? 'Soz Khwan' : 'سوز خوان'}</option>
-<option value='' disabled>{' '}</option>
+
               </select>
             </div>
 
@@ -253,6 +252,7 @@ useEffect(() => {
                 maxLength="15"
               />
             </div>
+            {waiting ? <CircularProgress /> :""}
             {systemResponse ? (
               <p style={{color:`${systemResponse.colorCode}`,fontSize:' 0.7rem'}}>{`${systemResponse.response}`}</p>
             ) : (

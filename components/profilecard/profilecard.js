@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react';
 import styles from './profilecard.module.css';
 import DeleteProfile from '../editpeople/deleteprofile';
+import EditProfile from '../editpeople/editprofile';
 export default function ProfileCard({data,getData,language}){
   const [expand,setExpand] = useState(false);
 
@@ -27,13 +28,17 @@ export default function ProfileCard({data,getData,language}){
         <a href={`tel:${data.phone}`}>
         <img className={styles.phoneicon} src='/phone.svg' alt='phone icon' />
         </a>
-        <div onClick={() => expand ? setExpand(false) : setExpand(true)}>{expand ?  <img className={styles.editIcon} src='/cancel.svg' alt='edit icon' />:<img className={styles.editIcon} src='/plusIcon.svg' alt='edit icon' />}</div>
+        <div onClick={() => expand ? setExpand(false) : setExpand(true)}>{expand ?  <img className={styles.editIcon} src='/arrowUp.svg' alt='more icon' />:<img className={styles.editIcon} src='/arrowDown.svg' alt='less icon' />}</div>
 
         </div>
       </div>
       {expand ? <div className={`${styles.options}`}>
-      <button onClick={() => console.log('edit')}>Edit</button>
+      <div className={styles.editButton}>
+        <EditProfile data={data} getData={getData} language={language} />
+        </div>
+        <div className={styles.deleteButton}>
       <DeleteProfile id={data._id} getData={getData} language={language} />
+      </div>
       </div> : ""}
       </div>
   )

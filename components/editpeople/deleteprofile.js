@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import styles from "./deleteprofile.module.css";
 import axios from "axios";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function DeleteProfile({ language, getData, id }) {
   const [appLang, setAppLang] = useState("eng");
   const [modalState, setModalState] = useState(false);
   const [systemResponse, setSystemResponse] = useState(null);
-
+const [waiting,setWating] = useState(false);
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    console.log(language)
     setAppLang(language);
   }, [language]);
 
@@ -30,12 +30,13 @@ export default function DeleteProfile({ language, getData, id }) {
       setSystemResponse(null);
       const deleteProfile = async () => {
         try {
-          // heroku URL "https://islamicprojectbackend.herokuapp.com/profile/"
+      setWating(true);
           const response = await axios({
             method: "delete",
             url: `https://islamicprojectbackend.herokuapp.com/profile/${id}`,
             data: {"password":`${password}`},
           });
+          setWating(false);
           if(response.data === 'wrong password'){
             setSystemResponse({ response: response.data, colorCode: "#f83a3d" });
 
@@ -46,9 +47,7 @@ export default function DeleteProfile({ language, getData, id }) {
               setModalState(false);
               clearModalData();
             }, 1000);
-            console.log(response);
           }
-
         } catch (error) {
           console.log(error);
         }
@@ -56,7 +55,6 @@ export default function DeleteProfile({ language, getData, id }) {
       deleteProfile();
     }
   };
-
   const clearModalData = () => {
     setPassword("");
 
@@ -73,7 +71,7 @@ export default function DeleteProfile({ language, getData, id }) {
           }}
           className={`${styles.modaltogglerbtn}  ${styles.rmovebtnstyle}`}
         >
-          {appLang == "eng" ? "- Delete" : "حذف -"}
+           <img className={styles.deleteIcon} src='/delete.svg' alt='edit icon' />
         </button>
       ) : (
         <div className={styles.modalcontainer}>
@@ -114,7 +112,7 @@ export default function DeleteProfile({ language, getData, id }) {
                 maxLength="15"
               />
             </div>
-
+            {waiting ? <CircularProgress /> : ""}
             {systemResponse ? (
               <p
                 style={{
