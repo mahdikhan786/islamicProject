@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .heading{
   text-align: center;
   margin:30px 0px;
-  color:red;
+  color:Green;
+  font-family: 'Bebas Neue';
+
 }
